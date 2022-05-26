@@ -68,8 +68,8 @@ def _preprocess_data(data):
     feature_vector_df['hour'] = feature_vector_df['time'].dt.hour
     feature_vector_df['minute'] = feature_vector_df['time'].dt.minute
 
-    predict_vector = feature_vector_df.drop(["time", "Unnamed: 0", "Valencia_wind_deg", "Seville_pressure"], axis = 1)
-    
+    feature_vector_df = feature_vector_df.drop(["time", "Unnamed: 0", "Valencia_wind_deg", "Seville_pressure"], axis = 1)
+    predict_vector = feature_vector_df
     # ------------------------------------------------------------------------
 
     return predict_vector
