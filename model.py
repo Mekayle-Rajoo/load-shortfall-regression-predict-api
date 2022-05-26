@@ -59,7 +59,7 @@ def _preprocess_data(data):
 
     # ----------- Replace this code with your own preprocessing steps --------
 
-    feature_vector_df['Valencia_pressure'] = feature_vector_df['Valencia_pressure'].fillna(feature_vector_df['Valencia_pressure'].mode()[0])
+    feature_vector_df['Valencia_pressure'] = feature_vector_df['Valencia_pressure'].fillna(0)
     feature_vector_df['time'] = pd.to_datetime(feature_vector_df['time'], format='%Y-%m-%d %H:%M:%S')
 
     feature_vector_df['year'] = feature_vector_df['time'].dt.year
