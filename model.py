@@ -58,19 +58,22 @@ def _preprocess_data(data):
     # ---------------------------------------------------------------
 
     # ----------- Replace this code with your own preprocessing steps --------
-    feature_vector_df['Valencia_pressure']=feature_vector_df['Valencia_pressure'].fillna(feature_vector_df['Valencia_pressure'].mode())
+
+    feature_vector_df['Valencia_pressure'] = feature_vector_df['Valencia_pressure'].fillna(0)
     feature_vector_df['time'] = pd.to_datetime(feature_vector_df['time'], format='%Y-%m-%d %H:%M:%S')
+
     feature_vector_df['year'] = feature_vector_df['time'].dt.year
     feature_vector_df['month'] = feature_vector_df['time'].dt.month
     feature_vector_df['day'] = feature_vector_df['time'].dt.day
     feature_vector_df['hour'] = feature_vector_df['time'].dt.hour
     feature_vector_df['minute'] = feature_vector_df['time'].dt.minute
-    removable = ['time', 'Unnamed: 0', 'Seville_pressure', 'Valencia_wind_deg', 'Valencia_pressure']
-    feature_vector_df = feature_vector_df.drop(removable, axis=1)
-    predict_vector = feature_vector_df
+
+    feature_vector_df = feature_vector_df.drop(["time", "Unnamed: 0", "Valencia_wind_deg", "Seville_pressure","minute",
+    "Barcelona_temp_min","Bilbao_temp_min", "Bilbao_temp", 'Seville_temp_max','Valencia_temp_max',
+    'Valencia_temp_min','Barcelona_temp_max','Madrid_temp_max','Bilbao_temp_max','Seville_temp_min', "Bilbao_wind_deg"], axis = 1)
     # ------------------------------------------------------------------------
 
-    return predict_vector
+    return feature_vector_df
 
 def load_model(path_to_model:str):
     """Adapter function to load our pretrained model into memory.
